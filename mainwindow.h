@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QByteArray>
+#include <QDataStream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
