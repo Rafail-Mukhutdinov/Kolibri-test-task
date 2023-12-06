@@ -14,10 +14,23 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    //метод модифицирует входные файлы.
+    void modifyFile(const QString& filePath);
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
+
+private:
+    QString inputMask;                                  //для хранения маски входных файлов.
+    bool deleteInputFiles;                              //для определения, нужно ли удалять входные файлы.
+    QString outputPath;                                 //для хранения пути сохранения результирующих файлов.
+    bool overwriteOutputFiles;                          //для определения действий при повторении имени выходного файла.
+    bool timerMode;                                     //для определения режима работы по таймеру или разового запуска.
+    int timerInterval;                                  //для хранения периодичности опроса наличия входного файла.
+    quint64 operationValue;                             //для хранения значения 8 байт для бинарной операции модификации файла.
+
 };
 #endif // MAINWINDOW_H
