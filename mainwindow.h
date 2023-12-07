@@ -5,6 +5,8 @@
 #include <QFile>
 #include <QByteArray>
 #include <QDataStream>
+#include <QFileDialog>
+#include <QStandardPaths>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -22,6 +24,12 @@ public:
 
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_selectFileButton_clicked();
+    QString getOpenFile(const QString &formatFale);
+
+
 
 private:
     Ui::MainWindow *ui;
