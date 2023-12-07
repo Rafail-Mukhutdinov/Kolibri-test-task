@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
     // Проверка работы XOR
     //QString filePath = "test.txt";
     //w.modifyFile(filePath);
+
     return a.exec();
 }
 
