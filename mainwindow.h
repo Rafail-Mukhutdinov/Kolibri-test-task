@@ -7,6 +7,10 @@
 #include <QDataStream>
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QMessageBox>
+#include <QProcess>
+#include <QSysInfo>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,7 +25,6 @@ class MainWindow : public QMainWindow
 public:
     //метод модифицирует входные файлы.
     void modifyFile(const QString& filePath);
-
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -29,10 +32,11 @@ private slots:
     void on_selectFileButton_clicked();
     QString getOpenFile(const QString &formatFale);
 
-
+   // void on_checkBox_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;
+
 
 private:
     QString inputMask;                                  //для хранения маски входных файлов.
