@@ -29,7 +29,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_selectFileButton_clicked();
+   // void on_selectFileButton_clicked();
     QString getOpenFile(const QString &formatFale);
 
    // void on_checkBox_stateChanged(int arg1);

@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::on_selectFileButton_clicked);
+   // connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::on_selectFileButton_clicked);
 
 }
 
@@ -49,7 +49,7 @@ void MainWindow::modifyFile(const QString& filePath)
     out.writeRawData(data.data(), data.size());
     file.close(); // Закрываем файл после записи
 }
-
+/*
 
 void MainWindow::on_selectFileButton_clicked()
 {
@@ -62,6 +62,7 @@ void MainWindow::on_selectFileButton_clicked()
         throw std::runtime_error(tr("No file selected").toStdString());
     }
 }
+*/
 
 QString MainWindow::getOpenFile(const QString &formatFile)
 {
