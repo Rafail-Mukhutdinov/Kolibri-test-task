@@ -56,7 +56,7 @@ void tst_Calculator::testMul()
 {
     Calculator calc;
     QCOMPARE(calc.mul(2.0, 3.0), 6.0);
-    QCOMPARE(calc.mul(-2.0, 3.0), -7.0);
+    QCOMPARE(calc.mul(-2.0, 3.0), -6.0);
     QCOMPARE(calc.mul(2.0, -3.0), -6.0);
     QCOMPARE(calc.mul(-2.0, -3.0), 6.0);
     QCOMPARE(calc.mul(0.0, 3.0), 0.0);
@@ -78,4 +78,4 @@ void tst_Calculator::testDiv()
 
 QTEST_APPLESS_MAIN(tst_Calculator)
 
-#include "tst_tst_calculator.moc"
+#include "tst_calculator.moc"
