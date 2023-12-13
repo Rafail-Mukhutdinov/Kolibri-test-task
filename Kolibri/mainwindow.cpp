@@ -21,7 +21,7 @@ void MainWindow::on_lineEdit_mask_file_textChanged(const QString &arg1)
 {
     param.inputMaskFile = arg1;
     qDebug() << "Вводим значение маски файлов:" << param.inputMaskFile ;
-}
+ }
 
 void MainWindow::on_checkBox_delete_file_clicked(bool checked)
 {
@@ -88,7 +88,10 @@ void MainWindow::on_pushButton_dir_save_clicked()
 void MainWindow::on_pushButton_start_clicked()
 {
 
-
+    // Проверяем наши LineEdit На корректные данные
+    if(!controler.checkLineEditNotEmpty(ui, param)){
+        return;
+    }
 
     QStringList filePaths = dirmaneger.searchFilesAndSubdirectories(param.inputDirStart);
     for (const QString &filePath : filePaths) {
@@ -99,8 +102,8 @@ void MainWindow::on_pushButton_start_clicked()
 
 }
 
-
-
-
-
+void MainWindow::on_pushButton_stop_clicked()
+{
+   ui->label_Text_info->setText("");
+}
 

@@ -18,7 +18,8 @@ HEADERS += \
   Calculator.h \
   conditioncontroller.h \
   directorymanager.h \
-  mainwindow.h
+  mainwindow.h \
+  paramformmain.h
 
 FORMS += \
     mainwindow.ui
