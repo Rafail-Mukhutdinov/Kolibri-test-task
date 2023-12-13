@@ -92,6 +92,7 @@ void MainWindow::on_pushButton_start_clicked()
     if(!controler.checkLineEditNotEmpty(ui, param)){
         return;
     }
+    ui->label_Text_info->setText("Супер.");
 
     QStringList filePaths = dirmaneger.searchFilesAndSubdirectories(param.inputDirStart);
     for (const QString &filePath : filePaths) {
@@ -105,5 +106,12 @@ void MainWindow::on_pushButton_start_clicked()
 void MainWindow::on_pushButton_stop_clicked()
 {
    ui->label_Text_info->setText("");
+}
+
+
+void MainWindow::on_lineEdit_dir_save_textChanged(const QString &arg1)
+{
+    param.outputDirFinish = arg1;
+    qDebug() << "Вводим значение директории выходных файлов:" << param.inputDirStart ;
 }
 

@@ -57,6 +57,8 @@ private slots:
 
     void on_pushButton_stop_clicked();
 
+    void on_lineEdit_dir_save_textChanged(const QString &arg1);
+
 private:
 
     Ui::MainWindow *ui;

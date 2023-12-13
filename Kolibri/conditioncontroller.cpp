@@ -20,12 +20,10 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
         check = false;
     }
 
-    if(paramLineEdit.inputDirStart.trimmed().isEmpty())
+
+    if(!checkDirStart)
     {
-        if(checkDirStart)
-        {
-            text_info += "Выбирите корректную входную директорию.\n";
-        }
+        text_info += "Выбирите корректную входную директорию.\n";
         check = false;
     }
 
@@ -36,12 +34,10 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
         check = false;
     }
 
-    if(paramLineEdit.outputDirFinish.trimmed().isEmpty())
+    qDebug() << "пустота " << paramLineEdit.outputDirFinish.trimmed().isEmpty() << "корректность" << checkDirFinish;
+    if(!checkDirFinish)
     {
-        if(checkDirFinish)
-        {
-            text_info += "Выбирите корректную выходную директорию.\n";
-        }
+        text_info += "Выбирите корректную выходную директорию.\n";
         check = false;
     }
 
@@ -64,6 +60,10 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
 
 bool ConditionController::isDirectoryValid(const QString &paramDir)
 {
+    if(paramDir.trimmed().isEmpty())
+    {
+        return false;
+    }
     QDir dir(paramDir);
     return dir.exists();
 }
