@@ -8,14 +8,14 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES += \
-        Calculator.cpp \
+        calculator.cpp \
         conditioncontroller.cpp \
         directorymanager.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
-  Calculator.h \
+  calculator.h \
   conditioncontroller.h \
   directorymanager.h \
   mainwindow.h \

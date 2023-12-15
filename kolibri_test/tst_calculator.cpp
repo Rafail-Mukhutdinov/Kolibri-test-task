@@ -1,6 +1,6 @@
 #include <QtTest>
 
-#include "../kolibri/Calculator.h"
+#include "../kolibri/calculator.h"
 
 class tst_Calculator : public QObject
 {

@@ -6,9 +6,9 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-HEADERS += ../kolibri/Calculator.h
+HEADERS += ../kolibri/calculator.h
 
-SOURCES +=  tst_calculator.cpp ../kolibri/Calculator.cpp \
+SOURCES +=  tst_calculator.cpp ../kolibri/calculator.cpp \
 
 
 
