@@ -93,14 +93,14 @@ void MainWindow::on_pushButton_start_clicked()
         return;
     }
     ui->label_Text_info->setText("Супер.");
-
+/*
     QStringList filePaths = dirmaneger.searchFilesAndSubdirectories(param.inputDirStart);
     for (const QString &filePath : filePaths) {
         qDebug() << filePath;
     }
     //dirmaneger.checkFileType(param.inputDirStart);
     qDebug() << "Обработка события кнопки старт";
-
+*/
 }
 
 void MainWindow::on_pushButton_stop_clicked()

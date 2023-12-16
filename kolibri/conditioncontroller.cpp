@@ -12,7 +12,8 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
     QString text_info;
 
     // Получил уникальные значение
-    QStringList arrayOfFileTypes = this->getUniqueWords(paramLineEdit.inputMaskFile);
+    QStringList arrayOfFileTypes = textcont.getUniqueWords(paramLineEdit.inputMaskFile);
+    qDebug() << arrayOfFileTypes;
     QString textMaskInfo = arrayOfFileTypes.join(" ");
     cui->lineEdit_mask_file->setText(textMaskInfo);
 
@@ -38,8 +39,8 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
         check = false;
     }
     if(!trimmedInputDirStart.isEmpty() && !trimmedOutputDirFinish.isEmpty() && trimmedInputDirStart == trimmedOutputDirFinish){
-       text_info += "Входная и выходная директория не должны совпадать.\n";
-       check = false;
+        text_info += "Входная и выходная директория не должны совпадать.\n";
+        check = false;
     }
     if(!check){
         cui->label_Text_info->setText(text_info);
@@ -47,21 +48,11 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
     return check;
 }
 
+
+
 bool ConditionController::isDirectoryValid(const QString &paramDir){
     return !paramDir.trimmed().isEmpty() && QDir(paramDir).exists();
 }
 
-QStringList ConditionController::getUniqueWords(const QString &sentence){
-    QStringList words = sentence.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
-    QSet<QString> uniqueMaskFile;
-    QRegularExpression pattern("^(.*\\.txt|.*\\.bin)$", QRegularExpression::CaseInsensitiveOption);
-    for(const auto &item : words){
-        // Если имя файла соответствует шаблону, добавляем его в набор
-        if (pattern.match(item).hasMatch()) {
-            uniqueMaskFile.insert(item);
-        }
-    }
-    return QStringList(uniqueMaskFile.begin(), uniqueMaskFile.end());
-}
 
 

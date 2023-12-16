@@ -16,6 +16,7 @@
 #include "paramformmain.h"
 #include "directorymanager.h"
 #include "conditioncontroller.h"
+#include "textconverter.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -65,6 +66,7 @@ private:
     ParamFormMain param;
     ConditionController controler;
     DirectoryManager dirmaneger;
+    TextConverter textcontroler;
 
 private:
 };

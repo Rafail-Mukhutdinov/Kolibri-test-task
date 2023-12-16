@@ -6,9 +6,14 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-HEADERS += ../kolibri/calculator.h
+HEADERS +=      autotest.h \
+                ../kolibri/textconverter.h \
+                ../kolibri/directorymanager.h
 
-SOURCES +=  tst_calculator.cpp ../kolibri/calculator.cpp \
+
+SOURCES +=      tst_main.cpp \
+                tst_directorymanager.cpp    ../kolibri/directorymanager.cpp \
+                tst_textconverter.cpp       ../kolibri/textconverter.cpp
 
 
 
