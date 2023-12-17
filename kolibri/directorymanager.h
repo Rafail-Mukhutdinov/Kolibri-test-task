@@ -13,6 +13,8 @@ public:
 
     void checkFileType(const QString &filePath);
 
+    bool isDirectoryValid(const QString &paramDir);
+
     DirectoryManager();
 };
 

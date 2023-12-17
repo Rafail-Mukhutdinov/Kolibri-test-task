@@ -7,6 +7,7 @@
 #include "paramformmain.h"
 #include "ui_mainwindow.h"
 #include "textconverter.h"
+#include "directorymanager.h"
 
 
 class ConditionController
@@ -17,7 +18,7 @@ public:
 
     bool checkLineEditNotEmpty(Ui::MainWindow *cui, const ParamFormMain &paramLineEdit);
 
-    bool isDirectoryValid(const QString &paramDir);
+
 
 private:
     // Проверяем на корректность заданной директории
@@ -28,8 +29,8 @@ private:
 
 private:
     QStringList arrayOfFileTypesMask;
-    TextConverter textcont;
-
+    TextConverter textCont;
+    DirectoryManager dirManager;
 };
 
 #endif // CONDITIONCONTROLLER_H

@@ -12,7 +12,7 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
     QString text_info;
 
     // Получил уникальные значение
-    this->arrayOfFileTypesMask = textcont.getUniqueWords(paramLineEdit.inputMaskFile);
+    this->arrayOfFileTypesMask = textCont.getUniqueWords(paramLineEdit.inputMaskFile);
     QString textMaskInfo = arrayOfFileTypesMask.join(" ");
     cui->lineEdit_mask_file->setText(textMaskInfo);
 
@@ -26,7 +26,7 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
         text_info += "Введите корректную маску файла.\n";
         check = false;
     }
-    if(!this->isDirectoryValid(trimmedInputDirStart))
+    if(!dirManager.isDirectoryValid(trimmedInputDirStart))
     {
         text_info += "Выбирите корректную входную директорию.\n";
         check = false;
@@ -36,7 +36,7 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
         text_info += "Введите XOR.\n";
         check = false;
     }
-    if(!this->isDirectoryValid(trimmedOutputDirFinish))
+    if(!dirManager.isDirectoryValid(trimmedOutputDirFinish))
     {
         text_info += "Выбирите корректную выходную директорию.\n";
         check = false;
@@ -55,10 +55,6 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, const Para
     return check;
 }
 
-bool ConditionController::isDirectoryValid(const QString &paramDir)
-{
-    return !paramDir.trimmed().isEmpty() && QDir(paramDir).exists();
-}
 
 
 

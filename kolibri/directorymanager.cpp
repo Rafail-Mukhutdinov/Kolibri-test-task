@@ -50,3 +50,9 @@ void DirectoryManager::checkFileType(const QString &filePath)
         qDebug() << "Файл" << filePath << "не является .txt или .bin файлом";
     }
 }
+
+
+bool DirectoryManager::isDirectoryValid(const QString &paramDir)
+{
+    return !paramDir.trimmed().isEmpty() && QDir(paramDir).exists();
+}
