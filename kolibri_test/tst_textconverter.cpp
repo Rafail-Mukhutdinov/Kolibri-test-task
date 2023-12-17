@@ -14,6 +14,9 @@ public:
 private slots:
     void getUniqueWords();
 
+    void createHexValidator_data();
+    void createHexValidator();
+
 };
 
 void tst_TextConverter::getUniqueWords()
@@ -75,6 +78,28 @@ void tst_TextConverter::getUniqueWords()
         QVERIFY(result.isEmpty());
     }
 
+}
+
+void tst_TextConverter::createHexValidator_data()
+{
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<bool>("expectedResult");
+
+    QTest::newRow("Valid Hex") << "ABCDEF1234567890" << true;
+    QTest::newRow("Invalid Hex") << "XYZ" << false;
+    QTest::newRow("Empty String") << "" << true;
+}
+
+void tst_TextConverter::createHexValidator()
+{
+    QFETCH(QString, input);
+    QFETCH(bool, expectedResult);
+
+    TextConverter converter;
+    QValidator* validator = converter.createHexValidator("[0-9A-F]{0,16}");
+
+    int pos = 0;
+    QCOMPARE(validator->validate(input, pos) == QValidator::Acceptable, expectedResult);
 }
 
 

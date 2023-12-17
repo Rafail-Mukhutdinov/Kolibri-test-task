@@ -1,6 +1,6 @@
-//#ifndef MAINWINDOW_H
-//#define MAINWINDOW_H
-#pragma once
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
 
 #include <QMainWindow>
 #include <QFile>
@@ -70,4 +70,4 @@ private:
 
 private:
 };
-//#endif // MAINWINDOW_H
+#endif // MAINWINDOW_H

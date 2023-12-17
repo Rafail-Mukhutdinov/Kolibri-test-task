@@ -8,7 +8,8 @@ DirectoryManager::DirectoryManager()
 QStringList DirectoryManager::searchFilesAndSubdirectories(const QString &folderPath)
 {
     QDir directory(folderPath);
-    if (!directory.exists()) {
+    if (!directory.exists())
+    {
         qWarning() << "Директория не существует:" << folderPath;
         return {};
     }
@@ -17,10 +18,12 @@ QStringList DirectoryManager::searchFilesAndSubdirectories(const QString &folder
 
     QStringList filePaths;
     QDirIterator it(folderPath, QDir::Files, QDirIterator::Subdirectories);
-    while (it.hasNext()) {
+    while (it.hasNext())
+    {
         it.next();
         QFileInfo fileInfo(it.filePath());
-        if (fileInfo.isFile()) {
+        if (fileInfo.isFile())
+        {
             filePaths << fileInfo.filePath();
         }
     }
@@ -32,15 +35,18 @@ void DirectoryManager::checkFileType(const QString &filePath)
 
     QFileInfo fileInfo(filePath);
 
-    if (!fileInfo.exists()) {
+    if (!fileInfo.exists())
+    {
         qWarning() << "Файл не существует:" << filePath;
         return;
     }
 
     QString fileType = fileInfo.suffix();
-    if (fileType == "txt" || fileType == "bin") {
+    if (fileType == "txt" || fileType == "bin")
+    {
         qDebug() << "Файл" << filePath << "является файлом типа" << fileType;
-    } else {
+    } else
+    {
         qDebug() << "Файл" << filePath << "не является .txt или .bin файлом";
     }
 }

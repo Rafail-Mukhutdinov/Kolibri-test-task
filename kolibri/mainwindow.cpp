@@ -7,8 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
    // ui->timeEdit->setDisabled(true);
-
-
+    // Создаем новый валидатор с регулярным выражением "[0-9A-F]{0,16}"
+    // Затем устанавливаем этот валидатор для lineEdit_mask_xor
+    ui->lineEdit_mask_xor->setValidator(textcontroler.createHexValidator("[0-9A-F]{0,16}"));
 }
 
 MainWindow::~MainWindow()

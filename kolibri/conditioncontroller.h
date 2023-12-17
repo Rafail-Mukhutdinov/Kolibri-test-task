@@ -1,6 +1,6 @@
-//#ifndef CONDITIONCONTROLLER_H
-//#define CONDITIONCONTROLLER_H
-#pragma once
+#ifndef CONDITIONCONTROLLER_H
+#define CONDITIONCONTROLLER_H
+
 
 
 
@@ -24,15 +24,12 @@ private:
    // bool isDirectoryValid (const QString &paramDir);
     //bool isDirectoryValid(const QString &paramDir, const QString &errorMessage, QString &text_info);
     bool checkInputNotEmpty(const QString &input, const QString &errorMessage, QString &text_info);
-    //QStringList getUniqueWords(const QString& sentence);
-
-
-
-
+    //
 
 private:
+    QStringList arrayOfFileTypesMask;
     TextConverter textcont;
 
 };
 
-//#endif // CONDITIONCONTROLLER_H
+#endif // CONDITIONCONTROLLER_H

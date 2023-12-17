@@ -4,6 +4,7 @@
 #include <QStringList>
 #include <QRegularExpression>
 #include <QDir>
+#include <QValidator>
 
 //#include "paramformmain.h"
 
@@ -14,7 +15,15 @@ public:
     //Возвращает текстовое сообщение состояния виджитов LineEdit
     QString     getTextInfo() {return textinfo;}
 
+    //Возвращаем массив маки файлов
+    QStringList getArrFileTypesMask();
+
+    //Возвращаем маску файла в текстовом формате
+    QString getTextFileTypeMask();
+
     QStringList getUniqueWords(const QString &sentence);
+
+    QValidator* createHexValidator(const QString textvalid);
 private:
 
     // bool isDirectoryValid(const QString &paramDir);
@@ -22,6 +31,11 @@ private:
 private:
     // текстовое сообщение
     QString textinfo;
+    //Массив значений маски
+    QStringList arrayOfFileTypesMask;
+    //Текстовое значение маски
+    QString textFileTypeMask;
+
 
 
 };
