@@ -94,11 +94,10 @@ void MainWindow::on_pushButton_start_clicked()
         return;
     }
     ui->label_Text_info->setText("Обработка.");
-
     //Обрабатываем наше кодирование и декодирование и так же обработка таймера
     controler.handleEncryptionEvent(timer, param);
 
-    ui->label_Text_info->setText("Готово.");
+   // ui->label_Text_info->setText("Готово.");
     return;
 
 }

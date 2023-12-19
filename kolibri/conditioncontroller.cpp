@@ -9,6 +9,7 @@ ConditionController::ConditionController()
 // Метод проверяет, что поля ввода не пусты и содержат корректные значения
 bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, ParamFormMain &paramForm)
 {
+    qDebug() << "Настройка виджетов";
     // Инициализируем переменную для проверки корректности ввода
     bool check = true;
     // Инициализируем переменную для хранения информационных сообщений
@@ -84,13 +85,14 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, ParamFormM
     {
         cui->label_Text_info->setText(text_info);
     }
-
+    qDebug() << "Конец Настройка виджетов";
     // Возвращаем результат проверки
     return check;
 }
 
 void ConditionController::handleEncryptionEvent(QTimer &timer, const ParamFormMain &paramForm)
 {
+
     // Если обработка по таймеру
     if(paramForm.radioOnelaunchTimer == false)
     {
@@ -124,7 +126,6 @@ void ConditionController::handleEncryptionEvent(QTimer &timer, const ParamFormMa
 void ConditionController::controlTimer(const ParamFormMain &paramForm){
     qDebug() << "Обработка по таймеру";
 
-  // timer.stop();
     // Разовый поиск
     this->convertFilesToEncodedFormat(paramForm.inputDirStart, paramForm, arrayOfFileTypesMask);
     // Поиск по вложенным папкам
@@ -135,11 +136,10 @@ void ConditionController::controlTimer(const ParamFormMain &paramForm){
             this->convertFilesToEncodedFormat(subfoldIter.next(), paramForm, arrayOfFileTypesMask);
         }
     }
-   // timer.start();
 }
 
-void ConditionController::convertFilesToEncodedFormat(QString inputDir, const ParamFormMain &paramForm, const QStringList dirMask){
-
+void ConditionController::convertFilesToEncodedFormat(QString inputDir, const ParamFormMain &paramForm, const QStringList dirMask)
+{
     QDirIterator dirIter(inputDir, dirMask, QDir::Files);
     //проход по всем файлам
     while(dirIter.hasNext())
@@ -147,7 +147,6 @@ void ConditionController::convertFilesToEncodedFormat(QString inputDir, const Pa
         dirIter.next();
 
         QFile inputFile(dirIter.filePath());
-
         // работаем с файлом только если он открывается в режиме ReadWrite
         if(inputFile.open(QIODevice::ReadWrite))
         {
@@ -161,21 +160,19 @@ void ConditionController::convertFilesToEncodedFormat(QString inputDir, const Pa
                     dirManager.modifyInputFiles(outputFile, paramForm, dirIter, outFileName);
                 }
             }
-
             outputFile.open(QIODevice::WriteOnly);
 
             const int BUFFER_SIZE = 1024*1024*5; // 5MB
 
             QByteArray buffer;
             buffer.reserve(BUFFER_SIZE);
-            char bufferChar[BUFFER_SIZE];
+            std::vector<char> bufferChar(BUFFER_SIZE);
 
             while (!inputFile.atEnd()) {
-                int nBlockSize = inputFile.read(bufferChar,sizeof(bufferChar));
-                QByteArray outputArray = hex.processXOR(QByteArray::fromRawData(bufferChar,nBlockSize), paramForm.inputMaskXor);
+                int nBlockSize = inputFile.read(bufferChar.data(), bufferChar.size());
+                QByteArray outputArray = hex.processXOR(QByteArray::fromRawData(bufferChar.data(), nBlockSize), paramForm.inputMaskXor);
                 buffer.append(outputArray);
             }
-
             outputFile.write(buffer);
 
             // если нужно удаляем входной файл
