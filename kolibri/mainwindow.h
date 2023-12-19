@@ -14,7 +14,6 @@
 
 
 #include "paramformmain.h"
-#include "directorymanager.h"
 #include "conditioncontroller.h"
 #include "textconverter.h"
 
@@ -65,8 +64,8 @@ private:
     Ui::MainWindow *ui;
     ParamFormMain param;
     ConditionController controler;
-    DirectoryManager dirmaneger;
-    TextConverter textcontroler;
+    TextConverter textControler;
+    QTimer timer;
 
 private:
 };

@@ -5,6 +5,15 @@
 
 struct ParamFormMain
 {
+    ParamFormMain():inputMaskFile(""),
+                    inputDirStart(""),
+                    inputMaskXor(""),
+                    outputDirFinish(""),
+                    deleteInputFiles(false),
+                    searchAttachedFiles(false),
+                    radioModifyOverride(true),
+                    radioOnelaunchTimer(true),
+                    timerInterval(0){};
     QString inputMaskFile;          //для хранение маски файла.
     QString inputDirStart;          //для хранения директории входных файлов.
     QString inputMaskXor;           //для хранения маски входных файлов.
@@ -16,12 +25,10 @@ struct ParamFormMain
     bool radioModifyOverride;       //для определения, состояния зависимого переключателя radioButton Перезаписать файл, Модифицировать файл
     bool radioOnelaunchTimer;       //для определения, состояния зависимого переключателя radioButton Разовый запуск, Работа по таймеру
 
-    // quint64 operationValue;       //для хранения значения 8 байт для бинарной операции модификации файла.
     int timerInterval;              //для хранения периодичности опроса наличия входного файла.
 
 
-    bool overwriteOutputFiles;      //для определения действий при повторении имени выходного файла.
-    bool timerMode;                 //для определения режима работы по таймеру или разового запуска.
+
 };
 
 #endif // PARAMFORMMAIN_H

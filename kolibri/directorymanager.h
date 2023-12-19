@@ -5,17 +5,24 @@
 #include <QDir>
 #include <QDirIterator>
 #include <QDebug>
+#include <QApplication>
+#include <QFile>
+#include "paramformmain.h"
+//#include "hexadecimalxorprocessor.h"
 
 class DirectoryManager
 {
 public:
-    QStringList searchFilesAndSubdirectories(const QString &folderPath);
-
-    void checkFileType(const QString &filePath);
-
     bool isDirectoryValid(const QString &paramDir);
 
+    // Модификация файлы
+    void modifyInputFiles(QFile &file, const ParamFormMain &paramForm, QDirIterator &dirIterator, QString &outFile);
+
     DirectoryManager();
+
+private:
+   // HexadecimalXORProcessor hex1;
+
 };
 
 #endif // DIRECTORYMANAGER_H

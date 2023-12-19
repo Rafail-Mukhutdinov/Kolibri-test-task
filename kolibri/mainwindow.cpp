@@ -6,10 +6,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-   // ui->timeEdit->setDisabled(true);
+
     // Создаем новый валидатор с регулярным выражением "[0-9A-F]{0,16}"
     // Затем устанавливаем этот валидатор для lineEdit_mask_xor
-    ui->lineEdit_mask_xor->setValidator(textcontroler.createHexValidator("[0-9A-F]{0,16}"));
+    ui->lineEdit_mask_xor->setValidator(textControler.createHexValidator("[0-9A-F]{0,16}"));
 }
 
 MainWindow::~MainWindow()
@@ -22,7 +22,7 @@ void MainWindow::on_lineEdit_mask_file_textChanged(const QString &arg1)
 {
     param.inputMaskFile = arg1;
     qDebug() << "Вводим значение маски файлов:" << param.inputMaskFile ;
- }
+}
 
 void MainWindow::on_checkBox_delete_file_clicked(bool checked)
 {
@@ -50,9 +50,9 @@ void MainWindow::on_lineEdit_mask_xor_textChanged(const QString &arg1)
 
 void MainWindow::on_pushButton_dir_open_clicked()
 {
-   param.inputDirStart = QFileDialog::getExistingDirectory();
-   ui->lineEdit_dir_open->setText(param.inputDirStart);
-   qDebug() << "Нажата кнопка Открыть и выбрана директория:" << param.inputDirStart;
+    param.inputDirStart = QFileDialog::getExistingDirectory();
+    ui->lineEdit_dir_open->setText(param.inputDirStart);
+    qDebug() << "Нажата кнопка Открыть и выбрана директория:" << param.inputDirStart;
 }
 
 
@@ -93,20 +93,21 @@ void MainWindow::on_pushButton_start_clicked()
     if(!controler.checkLineEditNotEmpty(ui, param)){
         return;
     }
-    ui->label_Text_info->setText("Супер.");
-/*
-    QStringList filePaths = dirmaneger.searchFilesAndSubdirectories(param.inputDirStart);
-    for (const QString &filePath : filePaths) {
-        qDebug() << filePath;
-    }
-    //dirmaneger.checkFileType(param.inputDirStart);
-    qDebug() << "Обработка события кнопки старт";
-*/
+    ui->label_Text_info->setText("Обработка.");
+
+    //Обрабатываем наше кодирование и декодирование и так же обработка таймера
+    controler.handleEncryptionEvent(timer, param);
+
+    ui->label_Text_info->setText("Готово.");
+    return;
+
 }
 
 void MainWindow::on_pushButton_stop_clicked()
 {
-   ui->label_Text_info->setText("");
+    ui->label_Text_info->setText("Стоп.");
+    timer.stop();
+    qDebug() << "Работа по таймеру отключена";
 }
 
 

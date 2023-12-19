@@ -24,6 +24,8 @@ public:
     QStringList getUniqueWords(const QString &sentence);
 
     QValidator* createHexValidator(const QString textvalid);
+
+
 private:
 
     // bool isDirectoryValid(const QString &paramDir);

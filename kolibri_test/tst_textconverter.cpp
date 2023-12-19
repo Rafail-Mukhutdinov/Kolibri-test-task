@@ -80,27 +80,35 @@ void tst_TextConverter::getUniqueWords()
 
 }
 
+
 void tst_TextConverter::createHexValidator_data()
 {
+    // Добавляем две колонки в таблицу данных теста: "input" и "expectedResult"
     QTest::addColumn<QString>("input");
     QTest::addColumn<bool>("expectedResult");
 
-    QTest::newRow("Valid Hex") << "ABCDEF1234567890" << true;
-    QTest::newRow("Invalid Hex") << "XYZ" << false;
-    QTest::newRow("Empty String") << "" << true;
+    // Добавляем три строки в таблицу данных теста
+    QTest::newRow("Valid Hex") << "ABCDEF1234567890" << true; // Валидная шестнадцатеричная строка
+    QTest::newRow("Invalid Hex") << "XYZ" << false; // Невалидная шестнадцатеричная строка
+    QTest::newRow("Empty String") << "" << true; // Пустая строка
 }
 
+// Метод, который выполняет тестирование
 void tst_TextConverter::createHexValidator()
 {
+    // Извлекаем данные из текущего тестового случая
     QFETCH(QString, input);
     QFETCH(bool, expectedResult);
 
+    // Создаем объект TextConverter и валидатор с регулярным выражением "[0-9A-F]{0,16}"
     TextConverter converter;
     QValidator* validator = converter.createHexValidator("[0-9A-F]{0,16}");
 
+    // Проверяем, что валидатор корректно проверяет входные данные
     int pos = 0;
     QCOMPARE(validator->validate(input, pos) == QValidator::Acceptable, expectedResult);
 }
+
 
 
 DECLARE_TEST(tst_TextConverter)

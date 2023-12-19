@@ -8,8 +8,6 @@ QStringList TextConverter::getArrFileTypesMask()
     return QStringList(arrayOfFileTypesMask.begin(), arrayOfFileTypesMask.end());
 }
 
-
-
 QStringList TextConverter::getUniqueWords(const QString &sentence)
 {
     //Если массив не пустой очищаем его
@@ -64,4 +62,5 @@ QValidator* TextConverter::createHexValidator(const QString textvalid)
     QValidator *validator = new QRegularExpressionValidator(QRegularExpression(textvalid), nullptr);
     return validator;
 }
+
 

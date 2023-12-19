@@ -5,54 +5,44 @@ DirectoryManager::DirectoryManager()
 
 }
 
-QStringList DirectoryManager::searchFilesAndSubdirectories(const QString &folderPath)
-{
-    QDir directory(folderPath);
-    if (!directory.exists())
-    {
-        qWarning() << "Директория не существует:" << folderPath;
-        return {};
-    }
-
-   // QDirIterator it(folderPath, QStringList() << "*.txt" << "*.bin", QDir::Files, QDirIterator::Subdirectories);
-
-    QStringList filePaths;
-    QDirIterator it(folderPath, QDir::Files, QDirIterator::Subdirectories);
-    while (it.hasNext())
-    {
-        it.next();
-        QFileInfo fileInfo(it.filePath());
-        if (fileInfo.isFile())
-        {
-            filePaths << fileInfo.filePath();
-        }
-    }
-    return filePaths;
-}
-
-void DirectoryManager::checkFileType(const QString &filePath)
-{
-
-    QFileInfo fileInfo(filePath);
-
-    if (!fileInfo.exists())
-    {
-        qWarning() << "Файл не существует:" << filePath;
-        return;
-    }
-
-    QString fileType = fileInfo.suffix();
-    if (fileType == "txt" || fileType == "bin")
-    {
-        qDebug() << "Файл" << filePath << "является файлом типа" << fileType;
-    } else
-    {
-        qDebug() << "Файл" << filePath << "не является .txt или .bin файлом";
-    }
-}
-
 
 bool DirectoryManager::isDirectoryValid(const QString &paramDir)
 {
     return !paramDir.trimmed().isEmpty() && QDir(paramDir).exists();
 }
+
+
+
+// Модификация файлов
+void DirectoryManager::modifyInputFiles(QFile &file, const ParamFormMain &paramForm, QDirIterator &dirIterator, QString &outFile)
+{
+    // Инициализация номера файла
+    int number = 1;
+    while(true){
+        // Создание нового имени файла
+        QString newFileName = paramForm.outputDirFinish % "/" % dirIterator.fileName();
+        // Поиск последней точки в имени файла
+        int index = newFileName.lastIndexOf(".");
+        // Создание строки для вставки
+        QString insert = " (" % QString::number(number) % ")";
+        // Если точка не найдена
+        if(index == -1){
+            newFileName += insert; // Добавить строку вставки в конец имени файла
+        } else {
+            newFileName.insert(index,insert); // Вставить строку перед точкой
+        }
+        // Обновить выходной файл
+        outFile = newFileName;
+        // Установить новое имя файла
+        file.setFileName(outFile);
+        // Если файл существует
+        if(file.exists()){
+            number++; // Увеличить номер файла
+            continue; // Продолжить цикл
+        } else {
+            break; // Выход из цикла
+        }
+    }
+}
+
+
