@@ -19,6 +19,13 @@ void DirectoryManager::modifyInputFiles(QFile &file, const ParamFormMain &paramF
     // Инициализация номера файла
     int number = 1;
     while(true){
+
+        //Если нажата кнопка стоп
+        if(paramForm.bottonClickStop)
+        {
+            break;
+        }
+
         // Создание нового имени файла
         QString newFileName = paramForm.outputDirFinish % "/" % dirIterator.fileName();
         // Поиск последней точки в имени файла

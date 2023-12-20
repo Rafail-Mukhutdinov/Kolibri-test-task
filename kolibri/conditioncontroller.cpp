@@ -90,6 +90,22 @@ bool ConditionController::checkLineEditNotEmpty (Ui::MainWindow *cui, ParamFormM
     return check;
 }
 
+void ConditionController::toggleWidget(Ui::MainWindow *cui, bool toggle)
+{
+    cui->lineEdit_mask_file->setDisabled(toggle);
+    cui->lineEdit_dir_open->setDisabled(toggle);
+    cui->pushButton_dir_open->setDisabled(toggle);
+    cui->lineEdit_mask_xor->setDisabled(toggle);
+    cui->lineEdit_dir_save->setDisabled(toggle);
+    cui->pushButton_dir_save->setDisabled(toggle);
+    cui->pushButton_start->setDisabled(toggle);
+    cui->pushButton_stop->setDisabled(!toggle);
+    cui->radioButton_one_start->setDisabled(toggle);
+    cui->radioButton_timer_start->setDisabled(toggle);
+    cui->timeEdit->setDisabled(!toggle);
+
+}
+
 void ConditionController::handleEncryptionEvent(QTimer &timer, const ParamFormMain &paramForm)
 {
 
@@ -113,6 +129,9 @@ void ConditionController::handleEncryptionEvent(QTimer &timer, const ParamFormMa
             QDirIterator subfoldIter(paramForm.inputDirStart, (QDir::Dirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
             while (subfoldIter.hasNext())
             {
+                if(paramForm.bottonClickStop){
+                    break;
+                }
                 this->convertFilesToEncodedFormat(subfoldIter.next(), paramForm, arrayOfFileTypesMask);
             }
         }else
@@ -133,6 +152,11 @@ void ConditionController::controlTimer(const ParamFormMain &paramForm){
     {
         QDirIterator subfoldIter(paramForm.inputDirStart, (QDir::Dirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
         while (subfoldIter.hasNext()) {
+            //Если нажата кнопка стоп
+            if(paramForm.bottonClickStop)
+            {
+                break;
+            }
             this->convertFilesToEncodedFormat(subfoldIter.next(), paramForm, arrayOfFileTypesMask);
         }
     }
@@ -144,6 +168,12 @@ void ConditionController::convertFilesToEncodedFormat(QString inputDir, const Pa
     //проход по всем файлам
     while(dirIter.hasNext())
     {
+        //Если нажата кнопка стоп
+        if(paramForm.bottonClickStop)
+        {
+            break;
+        }
+
         dirIter.next();
 
         QFile inputFile(dirIter.filePath());
@@ -155,7 +185,8 @@ void ConditionController::convertFilesToEncodedFormat(QString inputDir, const Pa
 
             if(outputFile.exists())
             {
-                if(paramForm.radioModifyOverride == false){
+                if(paramForm.radioModifyOverride == false)
+                {
                     qDebug() << "Модифицируем файл";
                     dirManager.modifyInputFiles(outputFile, paramForm, dirIter, outFileName);
                 }
@@ -168,7 +199,13 @@ void ConditionController::convertFilesToEncodedFormat(QString inputDir, const Pa
             buffer.reserve(BUFFER_SIZE);
             std::vector<char> bufferChar(BUFFER_SIZE);
 
-            while (!inputFile.atEnd()) {
+            while (!inputFile.atEnd())
+            {
+                //Если нажата кнопка стоп
+                if(paramForm.bottonClickStop)
+                {
+                    break;
+                }
                 int nBlockSize = inputFile.read(bufferChar.data(), bufferChar.size());
                 QByteArray outputArray = hex.processXOR(QByteArray::fromRawData(bufferChar.data(), nBlockSize), paramForm.inputMaskXor);
                 buffer.append(outputArray);

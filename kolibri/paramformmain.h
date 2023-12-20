@@ -13,7 +13,8 @@ struct ParamFormMain
                     searchAttachedFiles(false),
                     radioModifyOverride(true),
                     radioOnelaunchTimer(true),
-                    timerInterval(0){};
+                    timerInterval(0),
+                    bottonClickStop(false){};
     QString inputMaskFile;          //для хранение маски файла.
     QString inputDirStart;          //для хранения директории входных файлов.
     QString inputMaskXor;           //для хранения маски входных файлов.
@@ -26,7 +27,7 @@ struct ParamFormMain
     bool radioOnelaunchTimer;       //для определения, состояния зависимого переключателя radioButton Разовый запуск, Работа по таймеру
 
     int timerInterval;              //для хранения периодичности опроса наличия входного файла.
-
+    bool bottonClickStop;
 
 
 };

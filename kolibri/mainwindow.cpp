@@ -89,11 +89,13 @@ void MainWindow::on_pushButton_dir_save_clicked()
 void MainWindow::on_pushButton_start_clicked()
 {
 
+     param.bottonClickStop = false;
     // Проверяем наши LineEdit На корректные данные
     if(!controler.checkLineEditNotEmpty(ui, param)){
         return;
     }
     ui->label_Text_info->setText("Обработка.");
+    controler.toggleWidget(ui, true);
     //Обрабатываем наше кодирование и декодирование и так же обработка таймера
     controler.handleEncryptionEvent(timer, param);
 
@@ -104,6 +106,8 @@ void MainWindow::on_pushButton_start_clicked()
 
 void MainWindow::on_pushButton_stop_clicked()
 {
+    controler.toggleWidget(ui, false);
+    param.bottonClickStop = true;
     ui->label_Text_info->setText("Стоп.");
     timer.stop();
     qDebug() << "Работа по таймеру отключена";
