@@ -98,15 +98,12 @@ void ConditionController::toggleWidget(Ui::MainWindow *cui, bool toggle)
     cui->lineEdit_mask_xor->setDisabled(toggle);
     cui->lineEdit_dir_save->setDisabled(toggle);
     cui->pushButton_dir_save->setDisabled(toggle);
-    cui->pushButton_start->setDisabled(toggle);
-    cui->pushButton_stop->setDisabled(!toggle);
     cui->radioButton_one_start->setDisabled(toggle);
     cui->radioButton_timer_start->setDisabled(toggle);
-    cui->timeEdit->setDisabled(!toggle);
 
 }
 
-void ConditionController::handleEncryptionEvent(QTimer &timer, const ParamFormMain &paramForm)
+void ConditionController::handleEncryptionEvent(Ui::MainWindow *cui, QTimer &timer, const ParamFormMain &paramForm)
 {
 
     // Если обработка по таймеру
@@ -118,6 +115,11 @@ void ConditionController::handleEncryptionEvent(QTimer &timer, const ParamFormMa
         });
         // Выставляем время таймера
         timer.start(paramForm.timerInterval);
+
+        cui->label_Text_info->setText("Работа по таймеру.");
+        cui->timeEdit->setDisabled(true);
+        cui->pushButton_start->setDisabled(true);
+
     }else
     {
         // Разовый поиск
@@ -125,7 +127,6 @@ void ConditionController::handleEncryptionEvent(QTimer &timer, const ParamFormMa
         // Поиск по волженных папках
         if(paramForm.searchAttachedFiles == true)
         {
-            qDebug() << "Поиск по вложенным папкам по таймеру";
             QDirIterator subfoldIter(paramForm.inputDirStart, (QDir::Dirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
             while (subfoldIter.hasNext())
             {
@@ -139,7 +140,11 @@ void ConditionController::handleEncryptionEvent(QTimer &timer, const ParamFormMa
             qDebug() << "Поиск в текущей папке";
         }
         qDebug() << "Обработка Без таймера";
+        this->toggleWidget(cui, false);
+        cui->label_Text_info->setText("Готово.");
     }
+
+
 }
 
 void ConditionController::controlTimer(const ParamFormMain &paramForm){

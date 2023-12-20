@@ -88,6 +88,7 @@ void MainWindow::on_pushButton_dir_save_clicked()
 
 void MainWindow::on_pushButton_start_clicked()
 {
+    qDebug() << "Нажата кнопка старт";
 
      param.bottonClickStop = false;
     // Проверяем наши LineEdit На корректные данные
@@ -96,20 +97,36 @@ void MainWindow::on_pushButton_start_clicked()
     }
     ui->label_Text_info->setText("Обработка.");
     controler.toggleWidget(ui, true);
-    //Обрабатываем наше кодирование и декодирование и так же обработка таймера
-    controler.handleEncryptionEvent(timer, param);
 
-   // ui->label_Text_info->setText("Готово.");
-    return;
+    //Обрабатываем наше кодирование и декодирование и так же обработка таймера
+    controler.handleEncryptionEvent(ui, timer, param);
+
+
+
 
 }
 
 void MainWindow::on_pushButton_stop_clicked()
 {
+    qDebug() << "Нажата кнопка стоп";
+    // Отключение виджета пользовательского интерфейса
     controler.toggleWidget(ui, false);
+    // Установка флага остановки в true
     param.bottonClickStop = true;
+    // Обновление текстовой метки информации на "Стоп."
     ui->label_Text_info->setText("Стоп.");
+    // Остановка таймера
     timer.stop();
+
+    // Если таймер не настроен на однократный запуск
+    if(!param.radioOnelaunchTimer)
+    {
+        // Разблокировка редактирования времени
+        ui->timeEdit->setDisabled(false);
+        // Разблокировка кнопки "старт"
+        ui->pushButton_start->setDisabled(false);
+    }
+
     qDebug() << "Работа по таймеру отключена";
 }
 

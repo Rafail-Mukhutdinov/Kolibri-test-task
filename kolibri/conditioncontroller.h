@@ -26,7 +26,7 @@ public:
 
     void toggleWidget(Ui::MainWindow *cui, bool toggle);
 
-    void handleEncryptionEvent(QTimer &timer, const ParamFormMain &paramLineEdit);
+    void handleEncryptionEvent(Ui::MainWindow *cui, QTimer &timer, const ParamFormMain &paramLineEdit);
 
     void convertFilesToEncodedFormat(QString inputDir, const ParamFormMain &paramForm, const QStringList dirMask);
 
