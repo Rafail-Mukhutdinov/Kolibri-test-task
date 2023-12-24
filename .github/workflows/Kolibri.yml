@@ -28,4 +28,4 @@ jobs:
         make
     - name: Run Tests
       run: |
-         ./kolibri_test
+         kolibri_test
