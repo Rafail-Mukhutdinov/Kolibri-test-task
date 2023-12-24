@@ -28,5 +28,4 @@ jobs:
         make
     - name: Run Tests
       run: |
-        cd kolibri_test
-        ./kolibri_test
+         ./kolibri_test
