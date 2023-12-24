@@ -19,10 +19,14 @@ jobs:
         cd build
         qmake ..
         make
-    - name: Build test
+    - name: Build kolibri_test
       run: |
         cd kolibri_test
         mkdir build
         cd build
         qmake ..
         make
+    - name: Run Tests
+      run: |
+        cd kolibri_test/build
+        ./test
