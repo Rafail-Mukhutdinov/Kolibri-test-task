@@ -18,3 +18,14 @@ jobs:
         cd build
         qmake ..
         make
+    - name: Build Tests
+      run: |
+        cd test  # Переход в директорию с тестами
+        mkdir build
+        cd build
+        qmake ..
+        make
+    - name: Run Tests
+      run: |
+        cd test/build  # Переход в директорию сборки тестов
+        ./test  # Запуск тестов
