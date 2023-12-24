@@ -26,7 +26,7 @@ jobs:
     steps:
     - name: Test
       run: |
-        cd kolibri_test  
+        cd build/kolibri_test  
         mkdir build
         cd build
         qmake ..
