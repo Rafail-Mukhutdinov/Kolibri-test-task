@@ -7,26 +7,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v2
       with:
         version: '6.6.0'
-    - name: Build
+    - name: Build main project
       run: |
+        cd kolibri
         mkdir build
         cd build
         qmake ..
         make
-
-  test:    
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Test
+    - name: Build tests
       run: |
-        cd build/kolibri_test  
+        cd kolibri_tests
         mkdir build
         cd build
         qmake ..
