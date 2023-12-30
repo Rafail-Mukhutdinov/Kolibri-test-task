@@ -1,4 +1,5 @@
 [![kolibri](https://github.com/Rafail-Mukhutdinov/Kolibri_test_task/actions/workflows/Kolibri.yml/badge.svg)](https://github.com/Rafail-Mukhutdinov/Kolibri_test_task/actions/workflows/Kolibri.yml)
+# Сборка на Qt 6.6.0
 # Решение тестового задания для ООО «НПО Колибри»
 Программа  модифицирует входные файлы бинарной операцией с заданным значением.
 Порядок работы программы:
