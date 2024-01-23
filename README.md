@@ -1,6 +1,6 @@
 [![kolibri](https://github.com/Rafail-Mukhutdinov/Kolibri_test_task/actions/workflows/Kolibri.yml/badge.svg)](https://github.com/Rafail-Mukhutdinov/Kolibri_test_task/actions/workflows/Kolibri.yml)
 # Build on Qt 6.6.0
-# Solution to the test task for LLC "NPO Kolibri"
+# Project Hummingbird
 
 The program modifies input files with a binary operation with a specified value.
 
