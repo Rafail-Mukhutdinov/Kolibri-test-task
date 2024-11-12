@@ -12,6 +12,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: '6.6.0'
+        dir: '/opt/qt' # Добавляем параметр dir
     - name: Build kolibri
       run: |
         cd kolibri
@@ -30,6 +31,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         version: '6.6.0'
+        dir: '/opt/qt' # Добавляем параметр dir
     - name: Build kolibri_test
       run: |
         cd kolibri_test
